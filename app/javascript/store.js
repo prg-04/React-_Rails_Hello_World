@@ -1,21 +1,8 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
-
-const greetingSlice = createSlice({
-  name: 'greeting',
-  initialState: {
-    randomGreeting: '',
-  },
-  reducers: {
-    setRandomGreeting: (state, action) => {
-      state.randomGreeting = action.payload;
-    },
-  },
-});
-
-export const { setRandomGreeting } = greetingSlice.actions;
+import greetingsReducer from './greetings/greetingsSlice'
 
 export const store = configureStore({
   reducer: {
-    greeting: greetingSlice.reducer,
+    greeting: greetingsReducer,
   },
 });
