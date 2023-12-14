@@ -8,7 +8,6 @@ export const getGreetings = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const resp = await axios.get(GREETINGS_URL);
-      console.log(resp.data)
       return resp.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
