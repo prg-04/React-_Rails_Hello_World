@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getGreetings } from "./greetings/greetingsSlice"; 
 
 const Greetings = () => {
-  const [randomGreeting, setRandomGreeting] = useState("");
+  const dispatch = useDispatch();
+  const randomGreeting = useSelector((state) => state.greeting.randomGreeting);
 
   useEffect(() => {
-    fetch("/greetings.json")
-      .then((response) => response.json())
-      .then((data) => {
-        setRandomGreeting(data[0]?.body || "");
-      })
-      .catch((error) => console.error("Error fetching greetings:", error));
-  }, []);
+    dispatch(getGreetings());
+  }, [dispatch]);
 
   return (
     <div>
